@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controll Your PC</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+
+</head>
+<body style="text-align: center; margin: 10px;">
+    <h1>Home Page 'Controll Your PC' project</h1>
+    <h2>Volume control:</h2>
+    <form class="pure-form" action="" method="GET">
+        <input type="range" min="0" max="100" value="10" class="slider" id="volumes" name="volume">
+        <span id="volumep">Volume: 10%</span>
+        <button type="submit" class="pure-button pure-button-primary" id="buttoms">Send</button>
+    </form>
+
+    <script>
+        let volumes = document.getElementById("volumes");
+        let volumep = document.getElementById("volumep");
+        let buttoms = document.getElementById("buttoms");
+        //volumep.innerHTML="Volume: "+volumes.value+"%";
+
+
+        volumes.oninput = function () {
+            volumep.innerHTML="Volume: "+this.value+"%";
+            if (this.value <= 20)
+                buttoms.style.backgroundColor="rgb(28, 184, 65)";
+            else if (this.value > 20 && this.value <=50)
+                buttoms.style.backgroundColor="rgb(223, 117, 20)";
+            else if (this.value > 50 && this.value <=80)
+                buttoms.style.backgroundColor="rgb(202, 60, 60)";
+            else
+                buttoms.style.backgroundColor="rgb(66, 184, 221)";
+        };
+    </script>
+</body>
+</html>

@@ -3,6 +3,7 @@ from sys import platform
 import os
 
 level_of_controll = 3
+mouse_speed = 10
 
 def isLinuxOrWindows():
     if platform == "linux" or platform == "linux2":
@@ -26,6 +27,56 @@ ru_translate = {'ь':'m', 'а':'f', 'б':',', 'в':'d',
        'с':'c', 'т':'n', 'у':'e', 'ф':'a', 'х':'[',
        'ц':'w', 'ч':'x', 'ш':'i', 'щ':'o', 'ы':'s',
        'э':"'", 'ю':'.', 'я':'z', 'з':'p'}
+
+app = Flask(__name__)
+
+@app.route("/", methods = ['POST', 'GET'])
+def index():
+    if request.method=='GET' and request.args.get("volume"):
+        volume:int = request.args.get("volume")
+        print("Getted request to change Volume: "+volume)
+        setVolume(int(volume))
+    elif request.method=='GET' and request.args.get("control"):
+        if isLinuxOrWindows():
+            pg.press(request.args.get("control"))
+        elif not isLinuxOrWindows():
+            pw.keyboard.send_keys(translateKeyToWinKey(request.args.get("control")))
+    elif request.method=='GET' and request.args.get("text_to_put"):
+        text=request.args.get("text_to_put")
+        if isLinuxOrWindows():
+            writeRaETextLinux(text, control0="win", control1="space")
+        elif not isLinuxOrWindows():
+            pw.keyboard.send_keys(request.args.get("text_to_put"))
+    elif request.method=='GET' and request.args.get("mouse"):
+        mouse = request.args.get("mouse")
+        applyMouseMovement(mouse)
+    return render_template("index.html", current_volume=getVolume(), level_of_controll=level_of_controll, mouse_speed=mouse_speed)
+
+
+def setVolume(volume: int):
+    if volume >= 0 and volume <= 100:
+        if isLinuxOrWindows():
+            m = alsaaudio.Mixer()
+            m.setvolume(volume)
+        elif not isLinuxOrWindows():
+            devices = AudioUtilities.GetSpeakers()
+            interface = devices.Activate(
+                IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+            volume = cast(interface, POINTER(IAudioEndpointVolume))
+            volume.SetMasterVolumeLevel(volume, None)
+    
+def getVolume():
+    if isLinuxOrWindows():
+        m=alsaaudio.Mixer()
+        return m.getvolume()[0]
+    return 0
+
+def applyMouseMovement(mouse):
+    if isLinuxOrWindows():
+        if mouse=="up": pg.move(0, -mouse_speed)
+        if mouse=="down": pg.move(0, mouse_speed)
+        if mouse=="left": pg.move(-mouse_speed, 0)
+        if mouse=="right": pg.move(mouse_speed, 0)
 
 def translate(translate, text):
     result=""
@@ -67,51 +118,9 @@ def writeRaETextLinux(text, control0="", control1="", interval=0.25):
                 pg.hotkey(control0, control1)
 
 def translateKeyToWinKey(key: str):
-    if str == "up"
-    or str == "down"
-    or str == "left"
-    of str == "right": return "{VK_"+key.upper()+"}"
+    if str == "up" or str == "down" or str == "left"or str == "right": 
+        return "{VK_"+key.upper()+"}"
     return "{"+key.upper()+"}"
-
-app = Flask(__name__)
-
-@app.route("/", methods = ['POST', 'GET'])
-def index():
-    if request.method=='GET' and request.args.get("volume"):
-        volume:int = request.args.get("volume")
-        print("Getted request to change Volume: "+volume)
-        setVolume(int(volume))
-    elif request.method=='GET' and request.args.get("control"):
-        if isLinuxOrWindows():
-            pg.press(request.args.get("control"))
-        elif not isLinuxOrWindows():
-            pw.keyboard.send_keys(translateKeyToWinKey(request.args.get("control")))
-    elif request.method=='GET' and request.args.get("text_to_put"):
-        text=request.args.get("text_to_put")
-        if isLinuxOrWindows():
-            writeRaETextLinux(text, control0="win", control1="space")
-        elif not isLinuxOrWindows():
-            pw.keyboard.send_keys(request.args.get("control"))
-    return render_template("index.html", current_volume=getVolume(), level_of_controll=level_of_controll)
-
-
-def setVolume(volume: int):
-    if volume >= 0 and volume <= 100:
-        if isLinuxOrWindows():
-            m = alsaaudio.Mixer()
-            m.setvolume(volume)
-        elif not isLinuxOrWindows():
-            devices = AudioUtilities.GetSpeakers()
-            interface = devices.Activate(
-                IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-            volume = cast(interface, POINTER(IAudioEndpointVolume))
-            volume.SetMasterVolumeLevel(volume, None)
-    
-def getVolume():
-    if isLinuxOrWindows():
-        m=alsaaudio.Mixer()
-        return m.getvolume()[0]
-    return 0
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')

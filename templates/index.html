@@ -25,7 +25,7 @@
     <h1>Home Page 'Controll Your PC' project</h1>
     {%if (level_of_controll >= 0)%}
     <div class="d">
-        <h2>Volume control:</h2>
+        <h2>Volume control:</h2> <!-- level of controll 0-->
         <form class="pure-form" action="" method="GET">
             <input type="range" min="0" max="100" value="{{current_volume}}" class="slider" id="volumes" name="volume">
             <span id="volumep">Volume: {{current_volume}}%</span>
@@ -35,14 +35,14 @@
     {%endif%}
     {%if (level_of_controll >= 1)%}
     <div class="d">
-        <h2>Keyboard contol(Youtube and other):</h2>
+        <h2>Keyboard contol(Youtube and other):</h2> <!-- level of controll 1-->
         <a href='/?control=space' class="pure-button pure-button-primary">Space</a>
         <a href='/?control=backspace' class="pure-button pure-button-primary">Backspace</a>
         <br>
         <a href='/?control=left' class="pure-button pure-button-primary">Left</a>
         <a href='/?control=right' class="pure-button pure-button-primary">Right</a>
         <br>
-        <a href='/?control=u' class="pure-button pure-button-primary">Up</a>
+        <a href='/?control=up' class="pure-button pure-button-primary">Up</a>
         <a href='/?control=down' class="pure-button pure-button-primary">Down</a>
         <br>
         <a href='/?control=f' class="pure-button pure-button-primary">F</a> <!--???-->
@@ -50,11 +50,21 @@
     {%endif%}
     {%if (level_of_controll >= 2)%}
     <div class="d">
-        <h2>Keyboard contol(Put text):</h2>
+        <h2>Keyboard contol(Put text):</h2> <!-- level of controll 2-->
         <form class="pure-form" action="" method="GET">
             <input type="text" name="text_to_put" placeholder="Put text here">
             <button type="submit" class="pure-button pure-button-primary" id="buttoms">Send</button>
         </form>
+    </div>
+    {%endif%}
+    {%if (level_of_controll >= 3)%}
+    <div class="d">
+        <h2>Mouse contol:</h2> <!-- level of controll 3-->
+        <a href='/?mouse=up' class="pure-button pure-button-primary">Mouse Up({{mouse_speed}}px)</a>
+        <a href='/?mouse=down' class="pure-button pure-button-primary">Mouse Down({{mouse_speed}}px)</a>
+        <br>
+        <a href='/?mouse=left' class="pure-button pure-button-primary">Mouse Left({{mouse_speed}}px)</a>
+        <a href='/?mouse=right' class="pure-button pure-button-primary">Mouse Right({{mouse_speed}}px)</a>
     </div>
     {%endif%}
 

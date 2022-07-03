@@ -7,15 +7,31 @@
     <title>Controll Your PC</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
 
+    <style scoped="">
+        .d {
+            background-color: #d1d1d1; 
+            padding: 20px; 
+            padding-bottom: 30px;
+            margin: 20px auto; 
+            border-color: #b0b0b0; border-radius: 10px; 
+            width: 25%;
+            box-shadow: 0 0 15px #A9A9A9;
+        }
+    </style>
+
 </head>
-<body style="text-align: center; margin: 10px;">
+<body style="text-align: center;">
+
     <h1>Home Page 'Controll Your PC' project</h1>
-    <h2>Volume control:</h2>
-    <form class="pure-form" action="" method="GET">
-        <input type="range" min="0" max="100" value="10" class="slider" id="volumes" name="volume">
-        <span id="volumep">Volume: 10%</span>
-        <button type="submit" class="pure-button pure-button-primary" id="buttoms">Send</button>
-    </form>
+
+    <div class="d">
+        <h2>Volume control:</h2>
+        <form class="pure-form" action="" method="GET">
+            <input type="range" min="0" max="100" value="{{current_volume}}" class="slider" id="volumes" name="volume">
+            <span id="volumep">Volume: {{current_volume}}%</span><br>
+            <button type="submit" class="pure-button pure-button-primary" id="buttoms">Send</button>
+        </form>
+    </div>
 
     <script>
         let volumes = document.getElementById("volumes");
@@ -36,5 +52,6 @@
                 buttoms.style.backgroundColor="rgb(66, 184, 221)";
         };
     </script>
+
 </body>
 </html>

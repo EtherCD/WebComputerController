@@ -16,7 +16,7 @@ def index():
         volume:int = request.args.get("volume")
         print(volume)
         setVolume(int(volume))
-    return render_template("index.html")
+    return render_template("index.html", current_volume=getVolume())
 
 def setVolume(volume: int):
     if volume >= 0 and volume <= 100:
@@ -30,6 +30,11 @@ def setVolume(volume: int):
             volume = cast(interface, POINTER(IAudioEndpointVolume))
             volume.SetMasterVolumeLevel(volume, None)
     
+def getVolume():
+    if platform == "linux" or platform == "linux2":
+        m=alsaaudio.Mixer()
+        return m.getvolume()[0]
+    return 0
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')

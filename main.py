@@ -20,6 +20,8 @@ elif not isLinuxOrWindows():
     from comtypes import CLSCTX_ALL
     from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 
+#This is a translation for the output of Russian and other languages for Linux
+#If necessary, you can replace the signs of your language in turn, the same letter is only in English
 ru_translate = {'ь':'m', 'а':'f', 'б':',', 'в':'d',
        'г':'u', 'д':'l', 'е':'t', 'ё':'`', 'ж':';',
        'з':'p', 'и':'b', 'й':'q', 'к':'r', 'л':'k',

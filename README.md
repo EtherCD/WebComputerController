@@ -9,5 +9,5 @@ Allows you to stay in bed, and control the volume, etc...
 ### In Linux:
 1. Debian:
 * Check for python3 and pip3(if pip3 is not installed): `sudo apt-get install python3-pip`
-* Install Libraries: `pip3 install flask` `sudo apt-get install python3-alsaaudio`
+* Install Libraries: `pip3 install flask` `sudo apt-get install python3-alsaaudio scrot python3-tk python3-dev`
 * And start! `python3 main.py`

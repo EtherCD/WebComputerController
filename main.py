@@ -1,5 +1,6 @@
 from flask import *
 from sys import platform
+import pyautogui as pg
 import os
 
 level_of_controll = 3
@@ -13,12 +14,9 @@ def isLinuxOrWindows():
 
 if isLinuxOrWindows():
     import alsaaudio
-    import pyautogui as pg
 elif not isLinuxOrWindows():
     import pywinauto as pw
-    from ctypes import cast, POINTER
-    from comtypes import CLSCTX_ALL
-    from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+    from Sound import Sound
 
 #This is a translation for the output of Russian and other languages for Linux
 #If necessary, you can replace the signs of your language in turn, the same letter is only in English
@@ -42,7 +40,10 @@ def index():
         if isLinuxOrWindows():
             pg.press(request.args.get("control"))
         elif not isLinuxOrWindows():
-            pw.keyboard.send_keys(translateKeyToWinKey(request.args.get("control")))
+            if request.args.get("control") == "f":
+                pg.press("f")
+            else:
+                pw.keyboard.send_keys(translateKeyToWinKey(request.args.get("control")))
     elif request.method=='GET' and request.args.get("text_to_put"):
         text=request.args.get("text_to_put")
         if isLinuxOrWindows():
@@ -61,24 +62,22 @@ def setVolume(volume: int):
             m = alsaaudio.Mixer()
             m.setvolume(volume)
         elif not isLinuxOrWindows():
-            devices = AudioUtilities.GetSpeakers()
-            interface = devices.Activate(
-                IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-            volume = cast(interface, POINTER(IAudioEndpointVolume))
-            volume.SetMasterVolumeLevel(volume, None)
+            Sound.volume_set(volume)
     
 def getVolume():
     if isLinuxOrWindows():
         m=alsaaudio.Mixer()
         return m.getvolume()[0]
+    else:
+        return Sound.current_volume()
     return 0
 
 def applyMouseMovement(mouse):
-    if isLinuxOrWindows():
-        if mouse=="up": pg.move(0, -mouse_speed)
-        if mouse=="down": pg.move(0, mouse_speed)
-        if mouse=="left": pg.move(-mouse_speed, 0)
-        if mouse=="right": pg.move(mouse_speed, 0)
+    if mouse=="up": pg.move(0, -mouse_speed)
+    if mouse=="down": pg.move(0, mouse_speed)
+    if mouse=="left": pg.move(-mouse_speed, 0)
+    if mouse=="right": pg.move(mouse_speed, 0)
+    if mouse=="click": pg.click()
 
 def translate(translate, text):
     result=""
@@ -107,7 +106,7 @@ def writeRaETextLinux(text, control0="", control1="", interval=0.25):
                 pg.typewrite(translate(ru_translate, " "+text), interval=interval)
                 pg.hotkey(control0, control1)
     else:
-        if not current_lang:
+        if current_lang:
             pg.write(text, interval=interval)
         else:
             if not control0:

@@ -46,15 +46,7 @@
         <a href='/?control=down' class="pure-button pure-button-primary">Down</a>
         <br>
         <a href='/?control=f' class="pure-button pure-button-primary">F</a> <!--???-->
-    </div>
-    {%endif%}
-    {%if (level_of_controll >= 2)%}
-    <div class="d">
-        <h2>Keyboard contol(Put text):</h2> <!-- level of controll 2-->
-        <form class="pure-form" action="" method="GET">
-            <input type="text" name="text_to_put" placeholder="Put text here">
-            <button type="submit" class="pure-button pure-button-primary" id="buttoms">Send</button>
-        </form>
+        <a href='/?control=enter' class="pure-button pure-button-primary">Enter</a>
     </div>
     {%endif%}
     {%if (level_of_controll >= 3)%}
@@ -65,6 +57,17 @@
         <br>
         <a href='/?mouse=left' class="pure-button pure-button-primary">Mouse Left({{mouse_speed}}px)</a>
         <a href='/?mouse=right' class="pure-button pure-button-primary">Mouse Right({{mouse_speed}}px)</a>
+        <br>
+        <a href='/?mouse=click' class="pure-button pure-button-primary">Mouse Click</a>
+    </div>
+    {%endif%}
+    {%if (level_of_controll >= 2)%}
+    <div class="d">
+        <h2>Keyboard contol(Put text):</h2> <!-- level of controll 2-->
+        <form class="pure-form" action="" method="GET">
+            <input type="text" name="text_to_put" placeholder="Put text here">
+            <button type="submit" class="pure-button pure-button-primary" id="buttoms">Send</button>
+        </form>
     </div>
     {%endif%}
 

@@ -6,7 +6,7 @@ Allows you to stay in bed, and control the volume, etc...
 ## Install:
 ### In Windows:
 * Download Python 3.10+ 
-* And install libraries: `pip install flask` `pip install pywinauto`
+* And install libraries: `pip install flask` `pip install pywinauto` `pip install pyautogui`
 * `python main.py`
 ### In Linux:
 1. Debian:

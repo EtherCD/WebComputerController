@@ -1,6 +1,8 @@
 # WebComputerController
 Allows you to stay in bed, and control the volume, etc...
 
+[logo]: https://github.com/EtherCD/WebComputerController/blob/main/assets/img-logo.png "Img logo"
+
 ## Install:
 ### In Windows:
 * Download Python 3.10+

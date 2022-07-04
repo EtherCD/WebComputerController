@@ -1,7 +1,7 @@
 # WebComputerController
 Allows you to stay in bed, and control the volume, etc...
 
-![alt-текст](https://github.com/EtherCD/WebComputerController/blob/main/assets/img-logo.png "Img logo")
+![alt-текст](https://github.com/EtherCD/WebComputerController/blob/main/assets/img-logo-2.png "Img logo")
 
 ## Install:
 ### In Windows:

@@ -1,8 +1,7 @@
 # WebComputerController
-## This branch is for innovations in which there are crutches. Or the author is not sure about the publication.
-### Be careful when downloading the experimental version, there may be errors or bugs!!!
+Allows you to stay in bed, and control the volume, etc...
 
-![alt-текст](https://github.com/EtherCD/WebComputerController/blob/experemental/assets/img-logo-exp.png "Img logo")
+![alt-текст](https://github.com/EtherCD/WebComputerController/blob/main/assets/img-logo-2.png "Img logo")
 
 ## Install:
 ### In Windows:

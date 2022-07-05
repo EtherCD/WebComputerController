@@ -1,0 +1,14 @@
+body {
+    background-color: #90afc5;
+}
+
+.d {
+    padding: 20px; 
+    padding-bottom: 30px;
+    margin: 20px auto; 
+    width: 50%;
+    border-radius: 10px;
+    background-color: #336b87;
+    box-shadow: 0 0 15px #763626;
+    border-color: #2a3132;
+}

@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controll Your PC</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
-
-    <style scoped="">
-        .d {
-            background-color: #d1d1d1; 
-            padding: 20px; 
-            padding-bottom: 30px;
-            margin: 20px auto; 
-            border-color: #b0b0b0; border-radius: 10px; 
-            width: 50%;
-            box-shadow: 0 0 15px #A9A9A9;
+    <link rel="stylesheet" href="/static/theme-0.css" id="theme">
+    <script>
+        function getCurrentTheme() {
+            let currentCookie = document.cookie;
+            if (currentCookie == "" || currentCookie == null) { currentCookie="theme=0"; return 0; }
+            let currentTheme = parseInt(document.cookie.replace(/(?:(?:^|.*;\s*)theme\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+            if (currentTheme > 4) { currentCookie="theme=0"; return 0; }
+            return currentTheme;
         }
-    </style>
-
+        let firstCurrentTheme = getCurrentTheme();
+        let theme = document.getElementById("theme");
+        theme.href="/static/theme-"+firstCurrentTheme+".css";
+    </script>
 </head>
 <body style="text-align: center;">
 
@@ -34,7 +34,7 @@
     </div>
     {%endif%}
     {%if (level_of_controll >= 1)%}
-    <div class="d">
+    <div class="d pure-div">
         <h2>Keyboard contol(Youtube and other):</h2> <!-- level of controll 1-->
         <a href='/?control=space' class="pure-button pure-button-primary">Space</a>
         <a href='/?control=backspace' class="pure-button pure-button-primary">Backspace</a>
@@ -71,12 +71,14 @@
     </div>
     {%endif%}
 
+    <button id="themeb" class="pure-button">Change Theme</button>
+
     <script>
         let volumes = document.getElementById("volumes");
         let volumep = document.getElementById("volumep");
         let buttoms = document.getElementById("buttoms");
+        let themeb = document.getElementById("themeb");
         //volumep.innerHTML="Volume: "+volumes.value+"%";
-
 
         volumes.oninput = function () {
             volumep.innerHTML="Volume: "+this.value+"%";
@@ -89,6 +91,15 @@
             else
                 buttoms.style.backgroundColor="rgb(66, 184, 221)";
         };
+
+        themeb.onclick = function () {
+            let currentTheme = getCurrentTheme();
+            let theme = document.getElementById("theme");
+            let NewTheme = currentTheme+1;
+            theme.href="/static/theme-"+NewTheme+".css";
+            console.log(theme.href, NewTheme);
+            document.cookie="theme="+NewTheme
+        }
     </script>
 </body>
 </html>

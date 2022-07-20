@@ -12,3 +12,14 @@ body {
     box-shadow: 0 0 15px #763626;
     border-color: #2a3132;
 }
+
+select {
+    border: none;
+    border-color: #333;
+    border-radius: 5px;
+    border-width: 10px;
+    width: 25%;
+    padding: 5px;
+    color: #2a3132;
+    background-color: #238ec3;
+}

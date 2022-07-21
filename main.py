@@ -18,6 +18,9 @@ elif not isLinuxOrWindows():
     import pywinauto as pw
     from Sound import Sound
 
+def getAllTranslates():
+    return os.listdir("./translates")
+
 #This is a translation for the output of Russian and other languages for Linux
 #If necessary, you can replace the signs of your language in turn, the same letter is only in English
 ru_translate = {'ь':'m', 'а':'f', 'б':',', 'в':'d',
@@ -29,6 +32,8 @@ ru_translate = {'ь':'m', 'а':'f', 'б':',', 'в':'d',
        'э':"'", 'ю':'.', 'я':'z', 'з':'p'}
 
 app = Flask(__name__)
+
+translate = {}
 
 @app.route("/", methods = ['POST', 'GET'])
 def index():
@@ -53,7 +58,7 @@ def index():
     elif request.method=='GET' and request.args.get("mouse"):
         mouse = request.args.get("mouse")
         applyMouseMovement(mouse)
-    return render_template("index.html", current_volume=getVolume(), level_of_controll=level_of_controll, mouse_speed=mouse_speed)
+    return render_template("index.html", current_volume=getVolume(), level_of_controll=level_of_controll, mouse_speed=mouse_speed, translate=translate)
 
 
 def setVolume(volume: int):
@@ -124,4 +129,37 @@ def translateKeyToWinKey(key: str):
     return "{"+key.upper()+"}"
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    if translate != {}:
+        s=False
+        if os.path.isfile("./settings.json"):
+            with open("settings.json", "r+") as f:
+                if f.read() == "":
+                    s=True
+        else: s=True
+        if s:
+            translates = getAllTranslates()
+            print("Set Language:")
+            for translate in translates:
+                with open("./translates/"+translate, encoding="utf-8") as f:
+                    translateF=json.load(f)
+                    print(translate+":"+translateF["Name"])
+            inp = input("Put Translate Name(en):")
+            if inp+".json" in translates:
+                with open("./translates/"+inp+".json", encoding="utf-8") as f:
+                    translateF=json.load(f)
+                    translate=translateF
+                with open("settings.json", "w+") as f:
+                    f.write('{"currentT":"'+inp+'"}')
+                print("Setted!")
+                app.run(debug=True, host='0.0.0.0')
+            print("This not option")
+        else:
+            with open("settings.json", "r+") as f:
+                ct = json.load(f)
+            if ct["currentT"] != "":
+                with open("./translates/"+ct["currentT"]+".json", encoding="utf-8") as f:
+                    translateF=json.load(f)
+                    translate=translateF
+            app.run(debug=True, host='0.0.0.0')
+    else:
+        app.run(debug=True, host='0.0.0.0')

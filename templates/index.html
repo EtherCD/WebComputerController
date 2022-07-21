@@ -29,8 +29,8 @@
         <h2>{{translate.volumeC}}</h2> <!-- level of controll 0-->
         <form class="pure-form" action="" method="GET">
             <input type="range" min="0" max="100" value="{{current_volume}}" class="slider" id="volumes" name="volume">
-            <span id="volumep">{{translate.volume}}: {{current_volume}}%</span>
-            <button type="submit" class="pure-button pure-button-primary button" id="buttoms">{{translate.volume-send}}</button>
+            <span id="volumep">{{translate.volume}}{{current_volume}}%</span>
+            <button type="submit" class="pure-button pure-button-primary button" id="buttoms">{{translate.volume_send}}</button>
         </form>
     </div>
     {%endif%}

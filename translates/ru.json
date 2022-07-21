@@ -16,8 +16,8 @@
     "mouseC": "Управление мишью:", "____original_translate": "Mouse control",
     "mUp": "Курсор верх",
     "mDown": "Курсор вниз",
-    "mLeft": "Курсор в_лево",
-    "mRight": "Курсор в_право",
+    "mLeft": "Курсор в-лево",
+    "mRight": "Курсор в-право",
     "mClick": "Курсор нажать",
     "keyboardC_P": "Управление клавиатурой(ввести текст):", "_____original_translate": "Keyboard contol(Put text):",
     "keyboardC_P_input": "Ввод текста сюда",
@@ -26,7 +26,7 @@
     "theme_option_0": "Обычная",
     "theme_option_1": "Голубая",
     "theme_option_2": "Красная",
-    "theme_option_3": "Темно_синий",
-    "theme_option_4": "Коричнево_синий",
-    "theme_option_5": "Светло синий_синий"
+    "theme_option_3": "Темно-синий",
+    "theme_option_4": "Коричнево-синий",
+    "theme_option_5": "Светло синий-синий"
 }

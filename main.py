@@ -59,7 +59,7 @@ def index():
     elif request.method=='GET' and request.args.get("mouse"):
         mouse = request.args.get("mouse")
         applyMouseMovement(mouse)
-    return render_template("index.html", current_volume=getVolume(), level_of_controll=level_of_controll, mouse_speed=mouse_speed)
+    return render_template("index.html", current_volume=getVolume(), level_of_controll=level_of_controll, mouse_speed=mouse_speed, translate=translate)
 
 
 def setVolume(volume: int):
@@ -131,11 +131,12 @@ def translateKeyToWinKey(key: str):
 
 if __name__ == "__main__":
     if translate != {}:
-        s = False
-        if not os.path.isfile("./settings.json"):
+        s=False
+        if os.path.isfile("./settings.json"):
             with open("settings.json", "r+") as f:
                 if f.read() == "":
                     s=True
+        else: s=True
         if s:
             translates = getAllTranslates()
             print("Set Language:")

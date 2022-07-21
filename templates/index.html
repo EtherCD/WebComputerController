@@ -23,63 +23,63 @@
 </head>
 <body style="text-align: center;">
 
-    <h1>Home Page 'Controll Your PC' project</h1>
+    <h1>{{translate.homeP}}</h1>
     {%if (level_of_controll >= 0)%}
     <div class="d">
-        <h2>Volume control:</h2> <!-- level of controll 0-->
+        <h2>{{translate.volumeC}}</h2> <!-- level of controll 0-->
         <form class="pure-form" action="" method="GET">
             <input type="range" min="0" max="100" value="{{current_volume}}" class="slider" id="volumes" name="volume">
-            <span id="volumep">Volume: {{current_volume}}%</span>
-            <button type="submit" class="pure-button pure-button-primary button" id="buttoms">Send</button>
+            <span id="volumep">{{translate.volume}}: {{current_volume}}%</span>
+            <button type="submit" class="pure-button pure-button-primary button" id="buttoms">{{translate.volume-send}}</button>
         </form>
     </div>
     {%endif%}
     {%if (level_of_controll >= 1)%}
     <div class="d pure-div">
-        <h2>Keyboard contol(Youtube and other):</h2> <!-- level of controll 1-->
-        <a href='/?control=space' class="pure-button pure-button-primary button">Space</a>
-        <a href='/?control=backspace' class="pure-button pure-button-primary button">Backspace</a>
+        <h2>{{translate.keyboardC}}</h2> <!-- level of controll 1-->
+        <a href='/?control=space' class="pure-button pure-button-primary button">{{translate.kSpace}}</a>
+        <a href='/?control=backspace' class="pure-button pure-button-primary button">{{translate.kBackspace}}</a>
         <br>
-        <a href='/?control=left' class="pure-button pure-button-primary button">Left</a>
-        <a href='/?control=right' class="pure-button pure-button-primary button">Right</a>
+        <a href='/?control=left' class="pure-button pure-button-primary button">{{translate.kLeft}}</a>
+        <a href='/?control=right' class="pure-button pure-button-primary button">{{translate.kRight}}</a>
         <br>
-        <a href='/?control=up' class="pure-button pure-button-primary button">Up</a>
-        <a href='/?control=down' class="pure-button pure-button-primary button">Down</a>
+        <a href='/?control=up' class="pure-button pure-button-primary button">{{translate.kUp}}</a>
+        <a href='/?control=down' class="pure-button pure-button-primary button">{{translate.kRight}}</a>
         <br>
-        <a href='/?control=f' class="pure-button pure-button-primary button">F</a> <!--???-->
-        <a href='/?control=enter' class="pure-button pure-button-primary button">Enter</a>
+        <a href='/?control=f' class="pure-button pure-button-primary button">{{translate.kF}}</a> <!--???-->
+        <a href='/?control=enter' class="pure-button pure-button-primary button">{{translate.kEnter}}</a>
     </div>
     {%endif%}
     {%if (level_of_controll >= 3)%}
     <div class="d">
-        <h2>Mouse contol:</h2> <!-- level of controll 3-->
-        <a href='/?mouse=up' class="pure-button pure-button-primary button">Mouse Up({{mouse_speed}}px)</a>
-        <a href='/?mouse=down' class="pure-button pure-button-primary button">Mouse Down({{mouse_speed}}px)</a>
+        <h2>{{translate.mouseC}}</h2> <!-- level of controll 3-->
+        <a href='/?mouse=up' class="pure-button pure-button-primary button">{{translate.mUp}}({{mouse_speed}}px)</a>
+        <a href='/?mouse=down' class="pure-button pure-button-primary button">{{translate.mDown}}({{mouse_speed}}px)</a>
         <br>
-        <a href='/?mouse=left' class="pure-button pure-button-primary button">Mouse Left({{mouse_speed}}px)</a>
-        <a href='/?mouse=right' class="pure-button pure-button-primary button">Mouse Right({{mouse_speed}}px)</a>
+        <a href='/?mouse=left' class="pure-button pure-button-primary button">{{translate.mLeft}}({{mouse_speed}}px)</a>
+        <a href='/?mouse=right' class="pure-button pure-button-primary button">{{translate.mRight}}({{mouse_speed}}px)</a>
         <br>
-        <a href='/?mouse=click' class="pure-button pure-button-primary button">Mouse Click</a>
+        <a href='/?mouse=click' class="pure-button pure-button-primary button">{{translate.mClick}}</a>
     </div>
     {%endif%}
     {%if (level_of_controll >= 2)%}
     <div class="d">
-        <h2>Keyboard contol(Put text):</h2> <!-- level of controll 2-->
+        <h2>{{translate.keyboardC_P}}</h2> <!-- level of controll 2-->
         <form class="pure-form" action="" method="GET">
-            <input type="text" name="text_to_put" placeholder="Put text here">
-            <button type="submit" class="pure-button pure-button-primary button" id="buttoms">Send</button>
+            <input type="text" name="text_to_put" placeholder="{{translate.keyboardC_P_input}}">
+            <button type="submit" class="pure-button pure-button-primary button" id="buttoms">{{translate.keyboardC_P_send}}</button>
         </form>
     </div>
     {%endif%}
     <div class="d">
-        <h2>Change Theme:</h2>
+        <h2>{{translate.change_theme}}</h2>
         <select id="themes">
-            <option value="0">Standart</option>
-            <option value="1">Cyan</option>
-            <option value="2">Red</option>
-            <option value="3">Dark Blue</option>
-            <option value="4">Gray-Blue</option>
-            <option value="5">Light Blue-Blue</option>
+            <option value="0">{{translate.theme_option_0}}</option>
+            <option value="1">{{translate.theme_option_1}}</option>
+            <option value="2">{{translate.theme_option_2}}</option>
+            <option value="3">{{translate.theme_option_3}}</option>
+            <option value="4">{{translate.theme_option_4}}</option>
+            <option value="5">{{translate.theme_option_5}}</option>
         </select>
     </div>
 

@@ -1,6 +1,6 @@
 # WebComputerController
 * ## Allows you to stay in bed, and control the volume, etc...
-* ### Visit the experimental branch (They say it's good there): https://github.com/EtherCD/WebComputerController/tree/experemental
+* ### Visit the experimental branch (New features are often added there): https://github.com/EtherCD/WebComputerController/tree/experemental
 ![alt-текст](https://github.com/EtherCD/WebComputerController/blob/main/assets/img-logo-2.png "Img logo")
 
 ## Install:

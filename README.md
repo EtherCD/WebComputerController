@@ -7,7 +7,7 @@
 ## Install:
 ### In Windows:
 * Download Python 3.10+ 
-* And install libraries: `pip install flask` `pip install pywinauto` `pip install pyautogui`
+* And install libraries: `pip install flask pywinauto pyautogui`
 * `python main.py`
 ### In Linux:
 1. Debian:
